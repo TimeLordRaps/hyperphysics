@@ -4,6 +4,13 @@ Date: 2026-09-20. Status: the electrical citation surface and the transport
 interface are validated for the bounded claims below. The soundness criterion,
 hyperphysics' own ground, and dimensional analysis remain open.
 
+This receipt supersedes an earlier one of the same date. The only change is that
+the borrower these laws are cited by is now named correctly throughout: the
+electrical reading of the will tensor moved from `hyperethics` to the combination
+field `metamathethicology.will_electrophysics`, on a placement declared by the
+author. No law, no numeric function, and no part of the transport interface
+changed; the 55 checks below are the same 55 and passed again after the rename.
+
 ## Coordinates
 
 - Repository `hyperphysics`, branch `main`, private repository
@@ -19,7 +26,10 @@ hyperphysics' own ground, and dimensional analysis remain open.
 - The implementation and tests are byte-bound in
   [`validation/source-manifest.json`](validation/source-manifest.json). The digest
   of its canonical `files` mapping is
-  `5fbc3b9b8ab6e89ddb85569c704b66e8ad908e461a8d65e2ddebb6d50b26df09`.
+  `23250c5caa5a4597642acb7df9ccb6c69c4e1eae593477af4f6f584186160db1`, and was
+`5fbc3b9b8ab6e89ddb85569c704b66e8ad908e461a8d65e2ddebb6d50b26df09` before the
+borrower was renamed. `electrical.hm`, `src/hyperphysics/electrical.py`, and two
+test docstrings are the only files whose bytes changed.
   The manifest identifies tested bytes; it does not sign or certify them.
 
 ## Observed checks
@@ -77,6 +87,10 @@ python -m ruff check src tests
   gap, not a simplification.
 - **`GC-5`, hyperphysics' own ground, is not written.** `electrical.hm`
   deliberately carries no layer index rather than a wrong one.
+- **Nothing here checks the live borrower.** The cross-check that holds
+  `metamathethicology.will_electrophysics` to these exact bytes runs in *that*
+  repository and is recorded in its receipt. This suite never imports it, so a
+  borrower drifting from a law stated here would be caught there and not here.
 - The failure modes recorded per law are those the author judged load-bearing
   for a borrower. They are not claimed to be exhaustive, and no source is cited
   for their completeness.

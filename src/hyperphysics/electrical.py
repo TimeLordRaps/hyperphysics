@@ -3,9 +3,10 @@ paraphrasing it.
 
 WHY THIS MODULE EXISTS
 ----------------------
-Adjacent fields borrow the algebraic shape of electrical law. `hyperethics`
-transports the series-RLC form onto a will tensor; other fields will want the
-same laws for their own purposes. Left to themselves, each borrower restates the
+Adjacent fields borrow the algebraic shape of electrical law.
+`metamathethicology.will_electrophysics` transports the series-RLC form onto the
+will tensor `hyperethics` declares; other fields will want the same laws for
+their own purposes. Left to themselves, each borrower restates the
 law in its own words, and the restatements drift. When they drift, the phrase
 "this does not transport" loses its referent, because there is no longer a
 canonical statement of what was borrowed.

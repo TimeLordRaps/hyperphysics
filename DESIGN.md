@@ -10,9 +10,10 @@ Everything in `electrical.py` is classical circuit theory in the lumped-element
 approximation, and every reader of an undergraduate text already has it. The
 package exists for a different reason.
 
-Adjacent fields in this family borrow the *shape* of physical law. `hyperethics`
-transports the series-RLC form onto a will tensor: resistance becomes relational
-will, inductance becomes invariant will, voltage becomes variable will. That
+Adjacent fields in this family borrow the *shape* of physical law.
+`metamathethicology.will_electrophysics` transports the series-RLC form onto the
+will tensor `hyperethics` declares: resistance becomes relational will,
+inductance becomes invariant will, voltage becomes variable will. That
 borrowing is a cross-domain inference. It is not automatically illegitimate and
 it is not automatically sound, and the only thing that makes it *checkable* is
 that the borrower says exactly what it took and exactly what it left.
@@ -42,8 +43,9 @@ of a series RLC circuit. This looks like a triviality worth no line of code.
 
 It is there because it is the single most likely place for a silent
 disagreement. A field may perfectly reasonably constrain its analogue of C to be
-a function of its analogue of L — `hyperethics` does exactly this, on the
-declaration that capacitance is invariant will's constant of charge. The
+a function of its analogue of L — `metamathethicology.will_electrophysics` does
+exactly this, on the declaration that capacitance is invariant will's constant of
+charge. The
 consequence is that its parameter space is a *proper subset* of the circuit's, so
 the transport is not onto and no circuit intuition about tuning the two
 independently survives.
@@ -89,18 +91,22 @@ None. The package imports only the standard library, as `hyperethics` does, and
 for the same reason: a surface other fields cite should not drag a dependency
 graph into every field that cites it.
 
-`hyperethics` does not import this package at runtime either. It cites law names
-as strings and quotes the forms, and its `tests/test_citations.py` cross-checks
-those citations whenever `hyperphysics` happens to be importable. That keeps the
-citation verifiable without making a foundation depend on a physics package.
+The borrower does not import this package at runtime either.
+`metamathethicology.will_electrophysics` cites law names as strings and quotes
+the forms, and that package's `tests/test_citations.py` cross-checks every
+citation whenever `hyperphysics` happens to be importable, skipping loudly when
+it is not. That keeps the citation verifiable without making either cited field
+depend on the other, and a skip there is recorded as a skip rather than counted
+as a pass.
 
 ## Open, in order
 
 1. **A soundness criterion for transports** (`GC-4`). The interface makes
    borrowings explicit and comparable. It does not rank them. Some notion of
    structural adequacy — perhaps that the target independently reproduces a
-   relation the source predicts, as `hyperethics`' self-induction reproduces its
-   own `d-no-exterior` — is the obvious candidate and is not worked out.
+   relation the source predicts, as the will transport's `d-self-simulation`
+   reproduces `hyperethics`' independently derived `d-no-exterior` — is the
+   obvious candidate and is not worked out.
 2. **hyperphysics' ground** (`GC-5`), of which circuit theory would be a
    consequence rather than a starting point.
 3. **Units and dimensional analysis** (`GC-6`). The numeric functions take

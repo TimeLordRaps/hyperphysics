@@ -1,13 +1,13 @@
 {
   "files": {
-    "electrical.hm": "95aae6de45d7093bcec779cc6abe1fb79c2628d71bb6f724e136fd6b2d2532fc",
+    "electrical.hm": "170f9737c93218d5147d2fdd20fe1a8cd9ae8be73c0ae376c87be014cf522ef1",
     "pyproject.toml": "f67ca78b47cbd5791fb23c64ceb7c1cae79144c5ac131051fb5d8a01a2b8acd0",
     "src/hyperphysics/__init__.py": "47a233d461fd9939e6e41ff2290c240c95252b0cfa9d52688424887a5697221a",
-    "src/hyperphysics/electrical.py": "4b57460b7775a169f3867dd481895ed3733038703ec95bdb0dc10c506ab8c158",
+    "src/hyperphysics/electrical.py": "9fb8e68d1f6a2e5df7fc3b92130994a072a37db69d98829464d855eac0b07d47",
     "src/hyperphysics/transport.py": "562fcf48c3d51160f08ed6d137e1cd987606228b915f573f7462e4841e70970e",
     "src/hyperphysics/py.typed": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-    "tests/test_electrical.py": "b85422e2c16b43e306147b7d8634db7254be3d9498a79f516dabff30a9bf81c3",
-    "tests/test_transport.py": "fec3b88c165c32d241d1d86ba4a0c446ba3e80096fb39b5ab41aba9f5dbc6c6b"
+    "tests/test_electrical.py": "78b271de7346945e2535ac79cafe1056e79ef8711b333dbfa4b6c0b907655347",
+    "tests/test_transport.py": "6ee45639db546368d6987efa1bddc2d2ac846606692f286af79da0df99fe988c"
   },
-  "manifest_sha256": "5fbc3b9b8ab6e89ddb85569c704b66e8ad908e461a8d65e2ddebb6d50b26df09"
+  "manifest_sha256": "23250c5caa5a4597642acb7df9ccb6c69c4e1eae593477af4f6f584186160db1"
 }
