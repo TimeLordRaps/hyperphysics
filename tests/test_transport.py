@@ -118,7 +118,7 @@ def test_inherited_failure_modes_are_deduplicated():
 
 
 def test_constraining_a_free_parameter_requires_a_reason():
-    """The departure hyperethics makes: capacitance bound rather than free."""
+    """The departure the will transport makes: capacitance bound rather than free."""
     with pytest.raises(UndeclaredTransport, match="must say why"):
         a_transport(
             law="series-rlc",

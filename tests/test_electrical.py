@@ -97,7 +97,7 @@ def test_the_series_form_relates_every_free_parameter():
 
 
 def test_capacitance_is_stated_as_charge_per_unit_potential():
-    """C = Q/V is the reading hyperethics' constant will depends on."""
+    """C = Q/V is the reading the will transport's constant will depends on."""
     assert "charge stored per unit potential" in CAPACITOR.statement
 
 

@@ -12,11 +12,12 @@ LAWS_BY_NAME["capacitor"].fails_when    # ('the dielectric breaks down', ...)
 
 ## The problem this solves
 
-Adjacent fields borrow the algebraic shape of physical law. `hyperethics`
-transports the series-RLC form onto a will tensor. Left to itself, each borrower
-restates the law in its own words, the restatements drift, and the phrase *"this
-does not transport"* loses its referent — because there is no longer a canonical
-statement of what was borrowed.
+Adjacent fields borrow the algebraic shape of physical law.
+`metamathethicology.will_electrophysics` transports the series-RLC form onto the
+will tensor that `hyperethics` declares. Left to itself, each borrower restates
+the law in its own words, the restatements drift, and the phrase *"this does not
+transport"* loses its referent — because there is no longer a canonical statement
+of what was borrowed.
 
 So the laws live here and borrowers cite them by name. `hyperphysics.transport`
 supplies the interface a borrower must satisfy.
@@ -36,7 +37,7 @@ Item 5 is the one usually missed, and it is the interesting one.
 ```python
 Transport(
     law="capacitor",
-    target_field="hyperethics.will",
+    target_field="metamathethicology.will_electrophysics",
     target_form="past / constant",
     transports="that accumulated past opposes in inverse proportion to the constant holding it",
     does_not_transport="farads, stored field energy, and the circuit's independence of "
@@ -90,7 +91,14 @@ hypermath            L0 ground / apply         formal universe from one operatio
 hyperethics          L0 creation / immanence   normative structure from one operation
 hyperphysics         (ground not written)      physical law as a citation surface   <- this repo
 metamathethicology   operation spaces          metamath + metaphysics + metaethics + metalogic
+                     will_electrophysics       this repo x hyperethics, combined there
 ```
+
+The last line is where the borrowing of these laws actually lives. Neither field
+being combined can host it: this one states electrical law and knows nothing of
+will, and a foundation that had to cite physics to say what its own subject
+matter is would not be a foundation. The combination is a third thing, and it is
+placed where cross-domain inference is already a checked notion.
 
 ## Install and check
 

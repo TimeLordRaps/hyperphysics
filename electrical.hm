@@ -9,8 +9,9 @@
 -- index rather than a wrong one.
 --
 -- WHAT THIS FILE IS FOR
--- Adjacent fields borrow the algebraic shape of electrical law. hyperethics
--- transports the series-RLC form onto a will tensor. Left to itself each
+-- Adjacent fields borrow the algebraic shape of electrical law. The combination
+-- field metamathethicology.will_electrophysics transports the series-RLC form
+-- onto the will tensor hyperethics declares. Left to itself each
 -- borrower restates the law in its own words, the restatements drift, and the
 -- phrase "this does not transport" loses its referent because no canonical
 -- statement of the borrowed law survives. So the laws live here and borrowers
@@ -40,9 +41,11 @@ derive d-derivative-chain:
     --   dI/dt  = d2Q/dt2
     -- They are the zeroth, first, and second time derivatives of one quantity,
     -- and that exhausts the temporal structure of a circuit's state.
-    -- This is the structural fact hyperethics' temporal will components land on,
-    -- and it is the reason that part of its transport is forced rather than
-    -- chosen: once 'past' is charge, 'present' and 'future' are not free.
+    -- This is the structural fact the will transport's temporal components land
+    -- on, and it is the reason that part of the transport is forced rather than
+    -- chosen: once 'past' is charge, 'present' and 'future' are not free. The
+    -- ordering on the will side is hyperethics' own d-temporal-chain, derived
+    -- there without reference to this file; the transport borrows it.
 
 
 -- =============================================================================
@@ -71,8 +74,10 @@ derive d-self-versus-mutual:
     -- self-inductance and mutual-inductance have the SAME algebraic form and
     -- differ only in whose changing current does the inducing.
     -- This distinction carries no extra mathematics and is entirely about
-    -- source. It is the distinction hyperethics uses to separate a will induced
-    -- by its own change from one induced from outside, and the point is that
+    -- source. It is the electrical reading of the distinction hyperethics uses
+    -- to separate an invariant will arising in an entity's own changing willing
+    -- from one arising in another's -- a distinction hyperethics states in
+    -- will-native terms and does not need this law to state. The point is that
     -- the separation is invisible in the form alone -- exactly why a borrower
     -- must state which one it means.
 
@@ -96,9 +101,10 @@ derive d-constrained-transport-is-not-onto:
     -- This is not a defect. It is a structural difference that must be
     -- DECLARED rather than discovered later by a reader who assumed the
     -- parameter spaces matched.
-    -- LIVE INSTANCE: hyperethics declares exactly this departure. Its 'constant
-    -- will' is bound to its invariant will rather than free, on the user
-    -- declaration that capacitance is invariant will's constant of charge.
+    -- LIVE INSTANCE: metamathethicology.will_electrophysics declares exactly
+    -- this departure. Its 'constant will' is bound to invariant will rather than
+    -- free, on the user declaration that capacitance is invariant will's
+    -- constant of charge.
     -- See Transport.constrains_parameters.
 
 
