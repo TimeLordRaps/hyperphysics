@@ -1,0 +1,158 @@
+-- electrical.hm
+-- hyperphysics | electrical law as a citable transport surface
+--
+-- LAYER INDEX DELIBERATELY UNASSIGNED.
+-- hyperphysics' ground is not written. This file is NOT L0 and does not claim
+-- to be. Naming it `L0_electrical.hm` would assert that circuit theory is the
+-- ground of physics, which is false and which nothing here argues. When the
+-- ground exists, this file gets re-indexed above it. Until then it carries no
+-- index rather than a wrong one.
+--
+-- WHAT THIS FILE IS FOR
+-- Adjacent fields borrow the algebraic shape of electrical law. hyperethics
+-- transports the series-RLC form onto a will tensor. Left to itself each
+-- borrower restates the law in its own words, the restatements drift, and the
+-- phrase "this does not transport" loses its referent because no canonical
+-- statement of the borrowed law survives. So the laws live here and borrowers
+-- cite them by name.
+--
+-- Status: FORM for the transport interface and the parameter-independence
+--         statement; the physics itself is CITED, not derived. Every law below
+--         is textbook classical circuit theory in the lumped-element
+--         approximation. Nothing here is new physics and nothing is offered as
+--         new physics.
+-- =============================================================================
+
+
+-- =============================================================================
+-- SECTION I: QUANTITIES
+-- =============================================================================
+
+primitive Quantity :: Type
+    -- charge Q, current I, current-rate dI/dt,
+    -- resistance R, inductance L, capacitance C, voltage V.
+    -- Each carries its SI unit as data, because a transport must be able to
+    -- name the unit it is declining to carry.
+
+derive d-derivative-chain:
+    -- Q, I, dI/dt are NOT three independent quantities.
+    --   I      = dQ/dt
+    --   dI/dt  = d2Q/dt2
+    -- They are the zeroth, first, and second time derivatives of one quantity,
+    -- and that exhausts the temporal structure of a circuit's state.
+    -- This is the structural fact hyperethics' temporal will components land on,
+    -- and it is the reason that part of its transport is forced rather than
+    -- chosen: once 'past' is charge, 'present' and 'future' are not free.
+
+
+-- =============================================================================
+-- SECTION II: LAWS
+-- Each law carries: statement, form, quantities, validity, failure modes.
+-- The failure modes are the load-bearing part. A transported form inherits the
+-- failure modes of its source unless the borrower argues otherwise, and the
+-- borrower cannot argue against a statement it never read.
+-- =============================================================================
+
+law ohm:                 V = I * R
+law faraday-lenz:        V = L * dI/dt
+law capacitor:           V = Q / C         -- equivalently C = Q / V
+law self-inductance:     emf = -L * dI/dt  -- own changing current; Lenz sign
+law mutual-inductance:   emf_2 = -M * dI_1/dt  -- ANOTHER circuit's current
+law kirchhoff-voltage:   sum of drops = applied
+law series-rlc:          L * d2Q/dt2 + R * dQ/dt + (1/C) * Q = V
+
+derive d-series-is-composed:
+    -- series-rlc is not a fifth independent law. It is kirchhoff-voltage applied
+    -- to faraday-lenz, ohm, and capacitor.
+    -- CONSEQUENCE, enforced in code: a borrower of series-rlc inherits the
+    -- failure modes of all four, not of one.
+
+derive d-self-versus-mutual:
+    -- self-inductance and mutual-inductance have the SAME algebraic form and
+    -- differ only in whose changing current does the inducing.
+    -- This distinction carries no extra mathematics and is entirely about
+    -- source. It is the distinction hyperethics uses to separate a will induced
+    -- by its own change from one induced from outside, and the point is that
+    -- the separation is invisible in the form alone -- exactly why a borrower
+    -- must state which one it means.
+
+
+-- =============================================================================
+-- SECTION III: PARAMETER INDEPENDENCE
+-- =============================================================================
+
+axiom ax-parameters-independent:
+    -- In a series RLC circuit, R, L, and C are INDEPENDENT parameters. An
+    -- inductor and a capacitor are physically distinct components; any one may
+    -- be varied with the others held fixed.
+    -- Stated explicitly because it is precisely where a borrower may depart.
+
+derive d-constrained-transport-is-not-onto:
+    -- A field constraining its analogue of C to be a function of its analogue
+    -- of L has a SMALLER parameter space than the circuit.
+    -- CONSEQUENCE: the transport is not onto. Not every circuit corresponds to
+    -- a state of that field, so circuit intuitions about independently tuning
+    -- the two do not carry over.
+    -- This is not a defect. It is a structural difference that must be
+    -- DECLARED rather than discovered later by a reader who assumed the
+    -- parameter spaces matched.
+    -- LIVE INSTANCE: hyperethics declares exactly this departure. Its 'constant
+    -- will' is bound to its invariant will rather than free, on the user
+    -- declaration that capacitance is invariant will's constant of charge.
+    -- See Transport.constrains_parameters.
+
+
+-- =============================================================================
+-- SECTION IV: THE TRANSPORT INTERFACE
+-- =============================================================================
+
+primitive Transport :: Type
+    -- What a borrowing field must declare, at the point of borrowing:
+    --   1. which law, BY NAME, so the claim has a fixed referent;
+    --   2. what form the law takes in the target field;
+    --   3. what the borrowing transports;
+    --   4. what it does NOT transport, concretely enough to name a unit or a
+    --      mechanism of the cited law;
+    --   5. whether the target constrains a parameter the source leaves free,
+    --      with a reason.
+    -- Item 5 is the one usually missed. See d-constrained-transport-is-not-onto.
+
+axiom ax-units-do-not-transport:
+    -- SI units attach to the physical quantity and its measurement procedure,
+    -- never to the algebraic form. No transport carries a unit.
+    -- Enforced: `validate` rejects a disclaimer that names neither a unit nor a
+    -- mechanism of the law it cites. A borrower cannot satisfy the interface
+    -- with a general assurance; it must decline something specific.
+
+non-derive nd-validation-is-not-soundness:
+    -- `validate` checks that the required declarations were MADE and are about
+    -- the law they claim to be about. It does NOT check that the transport is
+    -- sound, and no function in this package can. A perfectly declared
+    -- transport may be a bad analogy.
+    -- This limit is stated here so that passing validation is never mistaken
+    -- for having earned the borrowing.
+
+
+-- =============================================================================
+-- SECTION V: GRADUATION CRITERION
+-- =============================================================================
+
+graduation:
+    -- GC-1: laws stated once, with validity and failure modes as data.
+    --       DISCHARGED.
+    -- GC-2: composition tracked, so a borrower of the series form inherits all
+    --       four constituents' failure modes. DISCHARGED -- inherited_failure_modes.
+    -- GC-3: an interface that makes a borrowing checkable rather than implicit.
+    --       DISCHARGED as a record; see nd-validation-is-not-soundness for what
+    --       that does and does not buy.
+    -- GC-4: a criterion for when a transport is SOUND rather than merely
+    --       declared. NOT DISCHARGED, and this is the real open problem of the
+    --       package.
+    -- GC-5: hyperphysics' own ground, of which circuit theory would be a
+    --       consequence rather than a starting point. NOT WRITTEN.
+    -- GC-6: units and dimensional analysis. NOT DISCHARGED. Numeric functions
+    --       here take dimensionless magnitudes; unit handling is the caller's.
+    --
+    -- Three of six discharged, and the two that matter most are open. This
+    -- package does not graduate as a physics; it graduates as a citation
+    -- surface, which is all it currently claims to be.
