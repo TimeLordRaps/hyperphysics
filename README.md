@@ -86,6 +86,15 @@ not written**, and naming this file L0 would assert that circuit theory is the
 ground of physics, which is false and which nothing here argues. It carries no
 layer index rather than a wrong one, and gets re-indexed when the ground exists.
 
+What hyperphysics is *about* is now stated, which is a different thing from its
+ground: **the mechanics, dynamics, and static features of operations**. See
+[`FIELD_STACK.md`](FIELD_STACK.md) for the declaration and for the two fields
+declared above it --- `hyperchemistry`, the operation of operations, and
+`hyperbiology`, the comprehensional meta structures of multi-combinatorial
+operations. Both are reserved names with stated scope; neither is written. The
+declaration constrains what a ground must eventually cover and **does not
+discharge GC-5**.
+
 ```
 hypermath            L0 ground / apply         formal universe from one operation
 hyperethics          L0 creation / immanence   normative structure from one operation
@@ -121,4 +130,11 @@ The two that matter most are open, and they are named in `electrical.hm`:
 - **GC-4** — a criterion for when a transport is *sound* rather than merely
   declared. This is the real open problem of the package.
 - **GC-5** — hyperphysics' own ground, of which circuit theory would be a
-  consequence rather than a starting point.
+  consequence rather than a starting point. `FIELD_STACK.md` states the subject
+  matter this ground has to cover; it does not supply the ground.
+
+**There is no preprint for this repository.** No manuscript exists, none is
+drafted, and nothing here has been written up for external reading. This is
+recorded so that a reader can tell "not yet" from "not needed": a preprint is
+owed eventually and is not owed before GC-4 and GC-5 have been addressed, since
+the transport-soundness criterion is the result that would be worth publishing.
