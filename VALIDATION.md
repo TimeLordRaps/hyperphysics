@@ -107,3 +107,8 @@ python -m ruff check src tests
   or package-index installation was performed. A wheel and source distribution
   were not built.
 - The host checker trusts Python and ordinary in-process object integrity.
+- **No preprint exists for this repository**, and no check here bears on one.
+  `FIELD_STACK.md` records the declared subject matter of hyperphysics and of
+  the two fields declared above it; it is an author declaration, not a result,
+  and nothing in this package entails it or checks it. It does not discharge
+  GC-5.
