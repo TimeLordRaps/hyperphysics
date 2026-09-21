@@ -1,5 +1,5 @@
 {
-  "digest": "1f7933cd327b4af6a33e787baedfd51c9c5d65e851bf772de65cb4fa21fb6612",
+  "digest": "c6e5760c29537c380b7dab818b762fbdb9c439dde34096d034ef3d0004f3834c",
   "edges": [
     {
       "evidence": [
@@ -2826,7 +2826,7 @@
         "layers": 0,
         "modules": 0,
         "symbols": 0,
-        "tracked_files": 214
+        "tracked_files": 219
       },
       "docs": [
         "docs/deep_research/Universal Recursive Systems Research Protocol.md",
@@ -2856,7 +2856,7 @@
         "docs/sleeps/04092026.md",
         "docs/sleeps/README.md"
       ],
-      "had_pages_before": false,
+      "had_pages_before": true,
       "id": "hyper-grammar",
       "layers": [],
       "module": null,
@@ -3209,10 +3209,10 @@
         "layers": 1,
         "modules": 4,
         "symbols": 43,
-        "tracked_files": 21
+        "tracked_files": 27
       },
       "docs": [],
-      "had_pages_before": false,
+      "had_pages_before": true,
       "id": "hyperlogic",
       "layers": [
         "L0_triangle.hm"
@@ -3641,10 +3641,10 @@
         "layers": 2,
         "modules": 5,
         "symbols": 53,
-        "tracked_files": 24
+        "tracked_files": 29
       },
       "docs": [],
-      "had_pages_before": false,
+      "had_pages_before": true,
       "id": "hyperethics",
       "layers": [
         "L0_creation.hm",
@@ -3824,10 +3824,10 @@
         "layers": 1,
         "modules": 2,
         "symbols": 21,
-        "tracked_files": 17
+        "tracked_files": 22
       },
       "docs": [],
-      "had_pages_before": false,
+      "had_pages_before": true,
       "id": "hyperphysics",
       "layers": [
         "electrical.hm"
@@ -4183,10 +4183,10 @@
         "layers": 1,
         "modules": 4,
         "symbols": 43,
-        "tracked_files": 22
+        "tracked_files": 27
       },
       "docs": [],
-      "had_pages_before": false,
+      "had_pages_before": true,
       "id": "metamathethicology",
       "layers": [
         "will_electrophysics.hm"
@@ -4210,10 +4210,10 @@
         "layers": 0,
         "modules": 0,
         "symbols": 0,
-        "tracked_files": 2
+        "tracked_files": 7
       },
       "docs": [],
-      "had_pages_before": false,
+      "had_pages_before": true,
       "id": "hyperbiology",
       "layers": [],
       "module": null,
