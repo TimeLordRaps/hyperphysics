@@ -1,5 +1,5 @@
 {
-  "digest": "c6e5760c29537c380b7dab818b762fbdb9c439dde34096d034ef3d0004f3834c",
+  "digest": "6e7d1ef708cec74af0722e24bed9488d5354153488e771c02a95871aaade73d9",
   "edges": [
     {
       "evidence": [
@@ -68,7 +68,7 @@
         "README.md"
       ],
       "kind": "citation",
-      "source": "hyper-grammar",
+      "source": "hypergrammar",
       "target": "grounded-hypercalculi",
       "weight": 1
     },
@@ -77,7 +77,7 @@
         "README.md"
       ],
       "kind": "citation",
-      "source": "hyper-grammar",
+      "source": "hypergrammar",
       "target": "grounded-hyperset-theory",
       "weight": 1
     },
@@ -90,7 +90,7 @@
         "docs/prerequisites/00_learning_path.md"
       ],
       "kind": "citation",
-      "source": "hyper-grammar",
+      "source": "hypergrammar",
       "target": "hypermath",
       "weight": 5
     },
@@ -101,7 +101,7 @@
         "docs/prerequisites/00_learning_path.md"
       ],
       "kind": "citation",
-      "source": "hyper-grammar",
+      "source": "hypergrammar",
       "target": "ordinatics",
       "weight": 3
     },
@@ -251,7 +251,7 @@
       ],
       "kind": "citation",
       "source": "hypermath",
-      "target": "hyper-grammar",
+      "target": "hypergrammar",
       "weight": 3
     },
     {
@@ -944,18 +944,18 @@
         "L1_relations.hm",
         "L2_operations.hm",
         "L3_ordinatics.hm",
-        "references/seed-ai/hypermath/spec/axioms.hm",
-        "references/seed-ai/hypermath/spec/casting.hm",
-        "references/seed-ai/hypermath/spec/links.hm",
-        "references/seed-ai/hypermath/spec/verify.hm",
-        "references/seed-ai/hypermath_form/ground.hm",
-        "references/seed-ai/hypermath_form/kernel.hm",
-        "references/seed-ai/hypermath_form/operations.hm",
-        "references/seed-ai/hypermath_form/ordinatics.hm",
-        "references/seed-ai/hypermath_form/relations.hm",
-        "references/seed-ai/hypermath_frame/spec/kernel.hm",
-        "references/seed-ai/hypermath_frame/spec/ordinatics.hm",
-        "references/seed-ai/hypermath_frame/spec/stdlib/hyperordinal.hm"
+        "references/precursor/hypermath/spec/axioms.hm",
+        "references/precursor/hypermath/spec/casting.hm",
+        "references/precursor/hypermath/spec/links.hm",
+        "references/precursor/hypermath/spec/verify.hm",
+        "references/precursor/hypermath_form/ground.hm",
+        "references/precursor/hypermath_form/kernel.hm",
+        "references/precursor/hypermath_form/operations.hm",
+        "references/precursor/hypermath_form/ordinatics.hm",
+        "references/precursor/hypermath_form/relations.hm",
+        "references/precursor/hypermath_frame/spec/kernel.hm",
+        "references/precursor/hypermath_frame/spec/ordinatics.hm",
+        "references/precursor/hypermath_frame/spec/stdlib/hyperordinal.hm"
       ],
       "module": "hypermath_foundations",
       "package": "hypermath-foundations",
@@ -2857,20 +2857,20 @@
         "docs/sleeps/README.md"
       ],
       "had_pages_before": true,
-      "id": "hyper-grammar",
+      "id": "hypergrammar",
       "layers": [],
       "module": null,
       "package": null,
-      "pages_url": "https://timelordraps.github.io/hyper-grammar/",
+      "pages_url": "https://timelordraps.github.io/hypergrammar/",
       "papers": [],
-      "repo_url": "https://github.com/TimeLordRaps/hyper-grammar",
+      "repo_url": "https://github.com/TimeLordRaps/hypergrammar",
       "root_docs": [
         "AGENTS.md",
         "HUMANS.md",
         "PAPER.md",
         "TIME.md"
       ],
-      "tagline": "hyper-grammar is a docs-first, self-verifying symbolic library project.",
+      "tagline": "hypergrammar is a docs-first, self-verifying symbolic library project.",
       "tier": "language",
       "visibility": "private"
     },
