@@ -32,7 +32,7 @@ validity conditions inherits them anyway.
 
 `SERIES_RLC` is the case that makes this concrete. It is not a fifth independent
 law — it is Kirchhoff's voltage law applied to three constitutive relations. A
-field transporting the series form inherits nine failure modes, not three, and
+field transporting the series form inherits fourteen failure modes, not three, and
 `inherited_failure_modes` computes the closure rather than trusting the borrower
 to remember the decomposition.
 
