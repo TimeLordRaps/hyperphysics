@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+from pathlib import Path
+
 import pytest
 
 from hyperphysics.electrical import Quantity
@@ -112,6 +114,30 @@ def test_transporting_the_series_form_inherits_all_four_constituents():
 def test_inherited_failure_modes_are_deduplicated():
     modes = inherited_failure_modes(a_transport(law="series-rlc"))
     assert len(set(modes)) == len(modes)
+
+
+def test_the_docs_state_the_inherited_count_the_code_computes():
+    """README.md and DESIGN.md quote this count, so they are held to it here.
+
+    Three modes are the series form's own and eleven come from its constituents.
+    """
+    transport = a_transport(law="series-rlc")
+    own = cited_law(transport).fails_when
+    series = inherited_failure_modes(transport)
+    assert (len(own), len(series)) == (3, 14)
+
+    # The docs wrap freely and spell small counts out in words.
+    words = (
+        "zero one two three four five six seven eight nine ten eleven twelve "
+        "thirteen fourteen fifteen sixteen seventeen eighteen nineteen twenty"
+    ).split()
+    root = Path(__file__).resolve().parents[1]
+    readme, design = (
+        " ".join((root / name).read_text(encoding="utf-8").split())
+        for name in ("README.md", "DESIGN.md")
+    )
+    assert f"inherited_failure_modes(transport_of_series_rlc) # {len(series)} modes" in readme
+    assert f"inherits {words[len(series)]} failure modes, not {words[len(own)]}," in design
 
 
 # --- declared departures from the source's parameter space ------------------
