@@ -23,7 +23,7 @@ The three fields stand to one another as physics, chemistry and biology do, with
 |---|---|---|---|
 | **hyperphysics** | the mechanics, dynamics, and static features **of operations** | physics | this repository; one layer written |
 | **hyperchemistry** | the **operation of operations** within hyperphysics | chemistry | declared, not written |
-| **hyperbiology** | the **comprehensional meta structures of multi-combinatorial operations yielded by subpart operations** | biology | declared, not written |
+| **hyperbiology** | the **comprehensional meta structures of multi-combinatorial operations yielded by subpart operations** | biology | declared; has a public repository, nothing written in it |
 
 The ordering is the same one the natural sciences have, and it carries the same
 two properties:
@@ -80,8 +80,13 @@ prefix was already correct for a reason this declaration now sharpens.
 
 ## A naming note, since the directory already exists
 
-There is a directory named `hyperbiology` elsewhere in the workspace. It is not
-this field. It is not a git repository and it holds one unrelated biomedical
-design disclosure. Under this declaration that name is **reserved for the future
-field**, and the material currently sitting under it belongs somewhere else. That
-move is the author's call and has not been made here.
+There is a directory named `hyperbiology` elsewhere in the workspace. It holds
+one unrelated biomedical design disclosure, which is not this field. Under this
+declaration that name is **reserved for the future field**, and the material
+currently sitting under it belongs somewhere else. That move is the author's call
+and has not been made here.
+
+(Corrected 2026-09-24. This note said the directory was not a git repository; it
+has since become one. The name also has a public repository now,
+`TimeLordRaps/hyperbiology`, created empty: a place for the field to be written,
+with nothing written in it yet.)
