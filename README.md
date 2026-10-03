@@ -76,7 +76,7 @@ applied to three constitutive relations. A borrower of the series form therefore
 inherits the failure modes of all four:
 
 ```python
-inherited_failure_modes(transport_of_series_rlc)   # 9 modes, deduplicated
+inherited_failure_modes(transport_of_series_rlc)   # 14 modes, deduplicated
 ```
 
 ## Layering
