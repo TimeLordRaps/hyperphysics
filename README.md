@@ -109,6 +109,32 @@ will, and a foundation that had to cite physics to say what its own subject
 matter is would not be a foundation. The combination is a third thing, and it is
 placed where cross-domain inference is already a checked notion.
 
+## Order of limits
+
+`hyperphysics.limits` states one more thing once: a limit procedure, with its
+order and its schedule, so that a claim like "the continuum is the limit of the
+foam" has to say *which limits, in which order*.
+
+```python
+from hyperphysics.limits import Word, commutation, curie_weiss_magnetization, to_infinity, to_zero
+
+n, h = to_infinity("N", 100, 2, 8), to_zero("h", 0.32, 0.5, 9)
+Word.of(n, h).notation        # 'lim[h→0+] lim[N→∞]'
+str(Word.of(n, h).label)      # 'ω^2'  (the depth; not the order)
+```
+
+Two words with the same label can disagree. For the Curie--Weiss ferromagnet below
+its critical temperature, taking `N → ∞` first and `h → 0⁺` second gives `0.9577`;
+the other order gives `0`. `commutation` reports `COMMUTE`, `DO_NOT_COMMUTE` or
+`UNKNOWN`, and says `UNKNOWN` unless the numbers earn the other two.
+
+**Not claimed.** The estimator certifies a limit only under the stated assumption
+that tail contraction continues past the sampled range; it is not a convergence
+proof. The ordinal label names depth and does not distinguish orders. The case this
+was written for, large spin on a fixed graph followed by graph refinement in loop
+quantum gravity, is **not implemented**; Curie--Weiss is the verified analogue and
+nothing more. See `VALIDATION.md`, addendum of 2026-10-03.
+
 ## Install and check
 
 ```bash

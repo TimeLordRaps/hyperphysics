@@ -112,3 +112,44 @@ python -m ruff check src tests
   the two fields declared above it; it is an author declaration, not a result,
   and nothing in this package entails it or checks it. It does not discharge
   GC-5.
+
+## Addendum, 2026-10-03: `hyperphysics.limits`
+
+This addendum adds one module and its tests. It changes nothing above: no byte of
+a file named in `validation/source-manifest.json` was altered (`__init__.py` does
+not re-export the new module), so the digest recorded above still describes the
+bytes it names. **`src/hyperphysics/limits.py` and `tests/test_limits.py` are not
+in that manifest** and are not covered by that digest.
+
+- Coordinates: branch `claude/order-of-limits`, Linux, Python 3.11 and 3.10, pytest
+  with `--timeout=30`, ruff with the repository configuration.
+- **73 tests passed with zero skips** (the 55 above plus 18 new). Lint passed.
+  Windows and Python 3.12 or 3.13 were not exercised on this host.
+- The estimator refuses what it cannot certify: slow algebraic convergence, a drift
+  below the tolerance, divergence, and an inner limit that has not settled are each
+  tested to be reported `UNSETTLED` or `DIVERGED`, never as a limit.
+- The decision rule is tested at its edges: two answers closer than their own
+  uncertainty are `UNKNOWN`, not `COMMUTE`.
+- **Mutation checks, each of which made at least one test fail:** a contraction test
+  that accepts anything, a decision rule that always returns `COMMUTE`, ignoring an
+  unsettled inner limit, swapping inner and outer, and disabling divergence
+  detection. An earlier version of the suite let the first of these survive; a test
+  for drifting sequences was added.
+- Physical case: the Curie--Weiss ferromagnet at `beta = 2`, exact finite-`N` sums.
+  `lim[h→0+] lim[N→∞]` gave `0.95773` certified to about `8e-4`, against the
+  mean-field fixed point `m = tanh(2m) = 0.9575` computed independently by
+  iteration; `lim[N→∞] lim[h→0+]` gave about `4e-15`. At `beta = 0.5` the two orders
+  agree. A schedule that does not reach `N h beta m >> 1` at its smallest `h` is
+  reported unsettled.
+
+What this does not establish:
+
+- The error bound assumes contraction continues beyond the sampled range. It is an
+  assumption, stated in the module, not a check.
+- The loop-quantum-gravity instance (large spin, then refinement) is not
+  implemented; no claim about gravity follows.
+- A tolerance of `1e-3` was chosen, and stated in the test, for the `N`-limit,
+  because corrections fall like `1/N` and the schedule stops at `N = 12800`; the
+  default `1e-6` is asserted to refuse it.
+- Units: every quantity is dimensionless, as elsewhere in this package (GC-6).
+
