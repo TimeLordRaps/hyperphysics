@@ -173,3 +173,12 @@ def test_superselected_possibilities_are_correlated_but_not_entangled():
     assert max(abs(red_cq[i][j] - red_ent[i][j]) for i in range(2) for j in range(2)) < 1e-12
     assert m.jacobi_min_eigenvalue(m.partial_transpose_second(cq)) > -1e-9      # separable
     assert m.jacobi_min_eigenvalue(m.partial_transpose_second(ent)) < -0.4      # entangled
+
+
+def test_one_generation_cancels_every_anomaly_and_removing_a_field_or_a_colour_breaks_it():
+    m = load("check_anomaly_cancellation")
+    standard = m.anomaly_sums(m.GENERATION)
+    assert all(v == 0 for v in standard.values())
+    assert m.anomaly_sums(m.GENERATION, colours=1)["Y^3"] != 0
+    without_positron = tuple(f for f in m.GENERATION if f[0] != "e^c")
+    assert any(v != 0 for v in m.anomaly_sums(without_positron).values())
