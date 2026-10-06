@@ -15,10 +15,14 @@ from hyperphysics.chain import (
     closing_operation,
     dagger,
     is_unitary,
+    least_violation_states,
     mat_mul,
     mat_vec,
+    minimal_violation_energy,
+    mismatch,
     norm,
     selector_branches,
+    split_cost,
 )
 
 
@@ -152,8 +156,52 @@ def test_unitary_helpers_agree():
 
 
 def test_every_law_states_validity_and_failure_modes():
-    assert {law.name for law in CHAIN_LAWS} == {"violation-energy", "history-state", "propagation-gap"}
+    assert {law.name for law in CHAIN_LAWS} == {"violation-energy", "history-state", "propagation-gap", "least-violation"}
     for law in CHAIN_LAWS:
         assert law.validity and law.fails_when
     with pytest.raises(ValueError):
         ChainLaw("x", "s", "f", "v", ())
+
+
+def test_least_violation_chain_spreads_the_correction_and_hits_both_ends():
+    chain, rng = make_chain(11, dim=3, steps=6)
+    target = random_state(rng, 3)                       # not reachable by the forced chain
+    states = least_violation_states(chain.ops, chain.state0, target)
+    assert max(abs(a - b) for a, b in zip(states[0], chain.state0)) < 1e-12
+    assert max(abs(a - b) for a, b in zip(states[-1], target)) < 1e-12
+    d = mismatch(chain.ops, chain.state0, target)
+    assert sum(abs(x) ** 2 for x in d) > 1e-3
+    per_step = chain.violations(states)
+    assert max(per_step) - min(per_step) < 1e-12        # evenly spread
+    assert abs(sum(per_step) - minimal_violation_energy(chain.ops, chain.state0, target)) < 1e-12
+    assert abs(per_step[0] - sum(abs(x) ** 2 for x in d) / chain.steps ** 2) < 1e-12
+
+
+def test_no_other_chain_with_the_same_ends_has_lower_energy_negative_control():
+    chain, rng = make_chain(12, dim=2, steps=5)
+    target = random_state(rng, 2)
+    best = minimal_violation_energy(chain.ops, chain.state0, target)
+    states = least_violation_states(chain.ops, chain.state0, target)
+    for _ in range(100):
+        perturbed = [states[0]] + [tuple(x + complex(rng.gauss(0, 0.05), rng.gauss(0, 0.05)) for x in b)
+                                   for b in states[1:-1]] + [states[-1]]
+        assert chain.violation_energy(tuple(perturbed)) > best
+
+
+def test_a_reachable_target_costs_nothing_and_longer_chains_pay_less():
+    chain, rng = make_chain(13, dim=2, steps=4)
+    reachable = chain.states()[-1]
+    assert minimal_violation_energy(chain.ops, chain.state0, reachable) < 1e-24
+    target = random_state(rng, 2)
+    short = minimal_violation_energy(chain.ops[:2], chain.state0, target)
+    # same mismatch magnitude spread over more steps costs proportionally less
+    d = sum(abs(x) ** 2 for x in mismatch(chain.ops[:2], chain.state0, target))
+    assert abs(short - d / 2) < 1e-12
+
+
+def test_convex_cost_spreads_and_concave_cost_concentrates():
+    assert split_cost(1.0, 10, 2.0, False) < split_cost(1.0, 10, 2.0, True)        # 0.1 vs 1
+    assert split_cost(1.0, 10, 0.5, True) < split_cost(1.0, 10, 0.5, False)        # 1 vs sqrt(10)
+    assert abs(split_cost(1.0, 10, 1.0, True) - split_cost(1.0, 10, 1.0, False)) < 1e-12
+    with pytest.raises(ValueError):
+        split_cost(1.0, 0, 2.0, False)

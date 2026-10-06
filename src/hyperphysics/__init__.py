@@ -17,7 +17,11 @@ from hyperphysics.chain import (
     OperationChain,
     closes,
     closing_operation,
+    least_violation_states,
+    minimal_violation_energy,
+    mismatch,
     selector_branches,
+    split_cost,
 )
 from hyperphysics.electrical import (
     CAPACITOR,
@@ -65,6 +69,10 @@ __all__ = [
     "OperationChain",
     "closes",
     "closing_operation",
+    "least_violation_states",
+    "minimal_violation_energy",
+    "mismatch",
+    "split_cost",
     "selector_branches",
     "CAPACITOR",
     "FARADAY_LENZ",

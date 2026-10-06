@@ -202,6 +202,50 @@ def selector_branches(chains: tuple, amplitudes: tuple) -> tuple:
     return tuple((a, c.history_state()) for a, c in zip(amplitudes, chains))
 
 
+def mismatch(ops: tuple, state0: Vector, target: Vector) -> Vector:
+    """`(U_n ... U_1)^dagger target - state0`: how far the forced chain from `state0` ends from `target`,
+    pulled back to the start. Zero exactly when the chain already reaches `target`."""
+    # (U_n ... U_1)^dagger = U_1^dagger ... U_n^dagger: apply U_n^dagger first
+    v = tuple(target)
+    for u in reversed(ops):
+        v = mat_vec(dagger(u), v)
+    return tuple(a - b for a, b in zip(v, state0))
+
+
+def minimal_violation_energy(ops: tuple, state0: Vector, target: Vector) -> float:
+    """Least total squared step violation over all chains from `state0` to `target` (intermediate
+    states unconstrained, quadratic cost): `||mismatch||^2 / n`. The correction is spread evenly over
+    the `n` steps, so a longer chain pays less in total and each step is violated by `||mismatch||/n`."""
+    d = mismatch(ops, state0, target)
+    return sum(abs(x) ** 2 for x in d) / len(ops)
+
+
+def least_violation_states(ops: tuple, state0: Vector, target: Vector) -> tuple:
+    """The minimizer of the violation energy between fixed ends: `psi_t = U_t...U_1 (state0 + (t/n) d)`.
+    Intermediate states are not constrained to unit norm; with that constraint the minimum is larger."""
+    n = len(ops)
+    d = mismatch(ops, state0, target)
+    out = [tuple(state0)]
+    for t in range(1, n + 1):
+        phi = tuple(a + (t / n) * b for a, b in zip(state0, d))
+        v = phi
+        for u in ops[:t]:
+            v = mat_vec(u, v)
+        out.append(v)
+    return tuple(out)
+
+
+def split_cost(total: float, parts: int, exponent: float, concentrated: bool) -> float:
+    """Cost `sum |d_i|^exponent` of splitting a total correction `total` evenly over `parts` steps, or
+    putting all of it in one step. Convex cost (exponent > 1) prefers spreading, concave (< 1) prefers
+    one discrete junction, and exponent 1 is indifferent."""
+    if total < 0 or parts < 1 or exponent <= 0:
+        raise ValueError("need total >= 0, parts >= 1, exponent > 0")
+    if concentrated:
+        return total ** exponent
+    return parts * (total / parts) ** exponent
+
+
 CHAIN_LAWS = (
     ChainLaw(
         name="violation-energy",
@@ -213,6 +257,19 @@ CHAIN_LAWS = (
         fails_when=(
             "an operation is not unitary, so the cross terms no longer match",
             "the clock is not a path (a cyclic clock needs the closing operation, see `closes`)",
+        ),
+    ),
+    ChainLaw(
+        name="least-violation",
+        statement="Between fixed ends that the operations cannot connect, the chain of least total squared "
+                  "step violation spreads the correction evenly, with total ||mismatch||^2 / n; with a concave "
+                  "cost the least-cost correction is instead concentrated in one step.",
+        form="min E = ||(U_n...U_1)^dagger target - state0||^2 / n",
+        validity="Quadratic cost, intermediate states unconstrained; the concave comparison is of cost "
+                 "exponents only.",
+        fails_when=(
+            "intermediate states are required to be normalized (the minimum is larger)",
+            "the cost is not a sum over steps",
         ),
     ),
     ChainLaw(
