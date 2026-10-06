@@ -11,6 +11,14 @@ hyperphysics' L0, and `electrical.hm` says so in its header rather than quietly
 taking a layer index it has not earned.
 """
 
+from hyperphysics.chain import (
+    CHAIN_LAWS,
+    ChainLaw,
+    OperationChain,
+    closes,
+    closing_operation,
+    selector_branches,
+)
 from hyperphysics.electrical import (
     CAPACITOR,
     FARADAY_LENZ,
@@ -52,6 +60,12 @@ from hyperphysics.transport import (
 )
 
 __all__ = [
+    "CHAIN_LAWS",
+    "ChainLaw",
+    "OperationChain",
+    "closes",
+    "closing_operation",
+    "selector_branches",
     "CAPACITOR",
     "FARADAY_LENZ",
     "KIRCHHOFF_VOLTAGE",

@@ -135,6 +135,31 @@ was written for, large spin on a fixed graph followed by graph refinement in loo
 quantum gravity, is **not implemented**; Curie--Weiss is the verified analogue and
 nothing more. See `VALIDATION.md`, addendum of 2026-10-03.
 
+## Operation chains
+
+`hyperphysics.chain` states one more thing once, at the smallest scale of "the dynamics and static
+features of operations": a chain of unitary operations `U_1 ... U_n` on a start state. Its propagation
+Hamiltonian's expectation on any clock-system state is the **total squared violation of the steps**, so it
+is zero exactly on chains in which every step is valid, and such a chain is fixed by its start state. The
+history state (the normalized chain, one block per clock reading) is annihilated by the Hamiltonian, does
+not evolve, and conditioned on clock reading `t` is the `t`-th step. The Hamiltonian's gap above its zero
+modes is `2 - 2 cos(pi/(n+1))`.
+
+```python
+from hyperphysics import OperationChain, closing_operation, closes
+
+chain = OperationChain((u1, u2), psi0)          # unitary matrices as tuples of tuples
+h = chain.history_state()                        # stationary, yet h conditioned on t is step t
+chain.violation_energy(claimed_states)           # 0 exactly when every claimed step is valid
+closes(OperationChain(chain.ops + (closing_operation(chain.ops),), psi0))   # a closed circuit
+```
+
+**Not claimed.** These are exact statements about finite chains of unitary matrices, checked to a stated
+tolerance. They are not a model of any physical sheet, wormhole or clock (the research notes in
+`docs/research/TIME_BUBBLE_SHEET.md` carry that discussion and its `[OPEN]` items), and the gap says nothing
+about how a state would be prepared in any physical process. `CHAIN_LAWS` carries each statement with its
+validity conditions and failure modes.
+
 ## Install and check
 
 ```bash
