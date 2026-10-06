@@ -137,3 +137,39 @@ def test_ponzano_regge_asymptotics_match_when_sympy_is_available():
     for j in (20, 40):
         exact = float(wigner_6j(j, j, j, j, j, j))
         assert abs(exact - m.asymptotic(j)) / abs(exact) < 2e-3
+
+
+def _setup_two_boundary():
+    m = load("check_two_boundary_possibilities")
+    th = 0.9
+    U = [[math.cos(th) + 0j, -math.sin(th) + 0j], [math.sin(th) + 0j, math.cos(th) + 0j]]
+    P = [[[1 + 0j, 0j], [0j, 0j]], [[0j, 0j], [0j, 1 + 0j]]]
+    return m, U, P, [1 + 0j, 0j]
+
+
+def test_two_boundary_probabilities_are_time_symmetric_and_depend_on_the_later_boundary():
+    m, U, P, psi = _setup_two_boundary()
+    outcomes = []
+    for phi in ([1 + 0j, 0j], [0j, 1 + 0j], [1 / m.R2 + 0j, 1 / m.R2 + 0j]):
+        fwd, rev = m.abl(U, psi, phi, P), m.abl(m.dag(U), phi, psi, P)
+        assert max(abs(a - b) for a, b in zip(fwd, rev)) < 1e-12
+        outcomes.append(fwd)
+    assert max(abs(outcomes[0][0] - outcomes[2][0]), abs(outcomes[0][0] - outcomes[1][0])) > 0.2
+
+
+def test_the_forward_description_is_the_marginal_of_the_two_boundary_one():
+    m, U, P, psi = _setup_two_boundary()
+    basis = [[1 + 0j, 0j], [0j, 1 + 0j]]
+    j = m.joint(U, psi, basis, P)
+    marginal = [sum(j[b][k] for b in range(2)) for k in range(2)]
+    assert max(abs(a - b) for a, b in zip(marginal, m.forward_born(U, psi, P))) < 1e-12
+    assert abs(sum(sum(r) for r in j) - 1.0) < 1e-12
+
+
+def test_superselected_possibilities_are_correlated_but_not_entangled():
+    m = load("check_two_boundary_possibilities")
+    cq, ent = m.states()
+    red_cq, red_ent = m.reduced_second(cq), m.reduced_second(ent)
+    assert max(abs(red_cq[i][j] - red_ent[i][j]) for i in range(2) for j in range(2)) < 1e-12
+    assert m.jacobi_min_eigenvalue(m.partial_transpose_second(cq)) > -1e-9      # separable
+    assert m.jacobi_min_eigenvalue(m.partial_transpose_second(ent)) < -0.4      # entangled
